@@ -82,6 +82,32 @@ class LinkedList:
             current_node = current_node.next
 
 
+
+    def specific_index_position_insert(self,position,new_data): 
+        new_node = Node(new_data) # new_data
+        if position == 0:
+            new_node.next = self.head
+            self.head = new_node
+            return
+
+        current_node = self.head
+        current_position = 0  
+            # The loop will continue until the specified position is reached
+        while current_node is not None and current_position<position-1:    
+            current_node = current_node.next
+            current_position +=1
+
+
+        #If the position is in the list
+        if current_node is not None:
+            new_node.next = current_node.next
+            current_node.next = new_node
+        else:
+            print("Position is out of range.")
+
+   
+
+
 # Code execution starts here
 if __name__ == '__main__':
     # Start with the empty list
@@ -103,6 +129,7 @@ if __name__ == '__main__':
     #             7    9.next[ 10 ]
     prev = llist.head.next
     llist.insert(prev, 10)
+    llist.specific_index_position_insert(2,20)
 
     # This function is printlist
     print("Linked List Insertion:")
