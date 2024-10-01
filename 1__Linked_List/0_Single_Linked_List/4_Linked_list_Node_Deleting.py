@@ -1,32 +1,63 @@
+''''
+        # push()            Time complexity   : O(1)
+                            Space complexity  : O(1)
+                            
+        # deleteNode()      Time complexity   : O(n)
+                            space complexity  : O(1)
+
+        # printList()       Time complexity   : O(n)
+                            space complexity  : O(1)
+'''
+
+
+
+# A complete working prython3 program to deletion in singly linked list
+
 # Node class
 class Node:
 
-    # Function to initialise the node object
     def __init__(self, data):
-        self.data = data  # Assign data
-        self.next = None  # Initilise next as null
+        self.data = data
+        self.next = None
 
 
-#*******************************************************************
-# Linked List contains a Node object
-class LinkedList:
-    # Function to initialise head
+# Linkedlist class
+class Linkedlist:
     def __init__(self):
         self.head = None
 
-    def deletePositionNode(self, position):
-        if position == 0:
+
+    def push(self, new_data):
+        current_node = Node(new_data)
+        current_node.next = self.head
+        self.head = current_node
+
+
+    # This function is DeleteNode
+    def deleteNode(self, key):
+        # Best Case
+        if self.head is None:
+            return
+
+        # head node [1st node]
+        if self.head.data == key:
             self.head = self.head.next
+            return
 
-        else:
-            node = self.head
-            for _ in range(position - 1):
-                node = node.next
+        # Store head node
+        # starting loop head.next node [2nd node]
+        current_node = self.head
+        while current_node.next is not None:
+            if current_node.next.data == key:
+                current_node.next = current_node.next.next
 
-            node.next = node.next.next
+            else:
+                current_node = current_node.next
 
-        return self.head
+        return current_node
 
+
+    # This function is printllist
     def printlist(self):
         current_node = self.head
         while current_node:
@@ -34,25 +65,20 @@ class LinkedList:
             current_node = current_node.next
 
 
-# *****************************************************************
-
-
-    def prepend(self, new_data):
-        current_node = Node(new_data)
-
-        current_node.next = self.head
-        self.head = current_node
-
-#*******************************************************************
+# Driver program
 if __name__ == '__main__':
-    llist = LinkedList()
-    llist.prepend(10)
-    llist.prepend(20)
-    llist.prepend(30)
-    llist.prepend(40)
+    llist = Linkedlist()
 
-    llist.deletePositionNode(2)
-    llist.deletePositionNode(1)
+    llist.push(9)
+    llist.push(4)
+    llist.push(2)
+    llist.push(6)
+    llist.push(7)
 
+    # DeleteNode function call
+    llist.deleteNode(2)
+
+    # printllist function call
     llist.printlist()
+
 
