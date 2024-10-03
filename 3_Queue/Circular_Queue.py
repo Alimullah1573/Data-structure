@@ -48,8 +48,8 @@ if __name__ == '__main__':
     q_size = 5
     q = CircularQueue(q_size)
 
+    q.enQueue('0. Alimullah')
     q.enQueue('1. Md Hosne Mobarok')
-    q.enQueue('2. Md Arman')
     q.enQueue('3. Md Asraful')
     q.enQueue('4. Md Araf')
     q.enQueue('5. Md Abul Bashar')
