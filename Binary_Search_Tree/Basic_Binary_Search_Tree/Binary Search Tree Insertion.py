@@ -81,3 +81,88 @@ if __name__ == '__main__':
 
     print("\n\nPrint Binary Tree Inorder Traversal:")
     Inorder_Tree_Traversal(root)
+
+
+
+#---------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+class Node:
+    def __init__(self,data):
+        self.left = None
+        self.data = data
+        self.right = None
+class Tree:
+    def createNode(self,data):
+      return Node(data)
+    def insert(self,node,data):
+        if node is None:
+            return self.createNode(data)
+        if data<node.data :
+            node.left = self.insert(node.left,data)
+
+        else:
+            node.right = self.insert(node.right,data)
+        return node
+
+    # Tree inorder
+    def tree_INorder(self,root):
+        if root is not None:
+            self.tree_INorder(root.left)
+            print(root.data,end=' ')
+            self.tree_INorder(root.right)
+
+    # Tree Pre_order
+    def Pre_order(self,root):
+        if root is not  None:
+            print(root.data,end=' ')
+            self.Pre_order(root.left)
+            self.Pre_order(root.right)
+
+
+    # Tree post_order
+    def Post_order(self,root):
+        if root is not None:
+
+            self.Post_order(root.left)
+            self.Post_order(root.right)
+            print(root.data, end=' ')
+
+    # Tree_high
+    def Tree_high(self,root):
+        if root is None:
+            return -1
+        return max(self.Tree_high(root.left),self.Tree_high(root.right))+1
+
+tree = Tree()
+root = tree.createNode(30)
+
+print("root ---->>",root.data)
+tree.insert(root,25)
+tree.insert(root,35)
+tree.insert(root,22)
+tree.insert(root,26)
+
+
+print('Inorder----->')
+
+tree.Pre_order(root)
+print()
+tree.Post_order(root)
+print()
+tree.tree_INorder(root)
+print()
+print(tree.Tree_high(root))
+
+
+
+
+
+
+
+
+
+
