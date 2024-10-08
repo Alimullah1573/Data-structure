@@ -21,7 +21,8 @@ def findMin(root):
     return root
 
 def remove_node(root, key):
-    if root is None: return None
+    if root is None: 
+        return None
 
     if root.val < key:
         root.right_child = remove_node(root.right_child, key)
