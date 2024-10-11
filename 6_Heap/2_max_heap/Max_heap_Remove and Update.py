@@ -6,7 +6,7 @@ class MinHeap:
         return (i - 1) // 2
 
     def _heapify_up(self, i):
-        while i > 0 and self.heap[self.parent(i)] > self.heap[i]:
+        while i > 0 and self.heap[self.parent(i)] < self.heap[i]:
             # Swap with parent
             self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]
             i = self.parent(i)
