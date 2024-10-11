@@ -16,19 +16,19 @@ class MinHeap:
         self._heapify_up(len(self.heap) - 1)  # Restore heap property
 
     def _heapify_down(self, i):
-        smallest = i
+        largest = i
         left_child = 2 * i + 1
         right_child = 2 * i + 2
 
-        if left_child < len(self.heap) and self.heap[left_child] < self.heap[smallest]:
+        if left_child < len(self.heap) and self.heap[left_child] < self.heap[largest]:
             smallest = left_child
-        if right_child < len(self.heap) and self.heap[right_child] < self.heap[smallest]:
+        if right_child < len(self.heap) and self.heap[right_child] < self.heap[largest]:
             smallest = right_child
 
         if smallest != i:
             # Swap with the smallest child and continue heapifying down
-            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
-            self._heapify_down(smallest)
+            self.heap[i], self.heap[largest] = self.heap[largest], self.heap[i]
+            self._heapify_down(largest)
 
     def remove(self, i):
         if not self.heap:
