@@ -1,76 +1,50 @@
-
-
-
-
-
-
-class HashTable:
-    def __init__(self, size=5):
+class Hash:
+    def __init__(self, size):
         self.size = size
-        self.hash_table = [[] for _ in range(self.size)]
+        self.table = [[] for _ in range(self.size)]  # Initialize with empty lists for chaining
 
-    # create Hash_function
     def hash_function(self, key):
-        return hash(key) % self.size
+        return hash(key) % self.size  # Hash key to an index
 
     def insert(self, key, value):
-        hash_key = self.hash_function(key)
-        self.hash_table[hash_key].append((key, value))
+        index = self.hash_function(key)
+        self.table[index].append((key, value))  # Append key-value pair to the list at the index
 
-    def search(self, key):
-        hash_key = self.hash_function(key)
-        bucket = self.hash_table[hash_key]
-
-        for k, val in bucket:
-            if k == key:
+    def search(self, key, value):
+        index = self.hash_function(key)
+        # Check if the key-value pair exists in the chain
+        for pair in self.table[index]:
+            if pair == (key, value):  # Compare both key and value
                 return True
-        return False
-
-    def get(self, key):
-        hash_key = self.hash_function(key)
-        bucket = self.hash_table[hash_key]
-
-        # Return all values associated with the key
-        values = [val for k, val in bucket if k == key]
-        return values if values else None
+        return False  # Return False if not found
 
     def display(self):
-        for i, bucket in enumerate(self.hash_table):
-            print(f"Bucket {i}: {bucket}")
+        for i in range(self.size):
+            if self.table[i]:  # If the list at the index is not empty
+                print(f"Index {i}: {self.table[i]}")
+            else:
+                print(f"Index {i}: Empty")
+
+   # spesipic key --->>> value ---- output
+    def get_key(self,key):
+        index = self.hash_function(key)
+        lis = self.table[index]
+        for i in lis:
+            if i[0] == key:   # chack key
+                return i[1] # output value
+        return None  # False
 
 
 if __name__ == '__main__':
+    hash_table = Hash(5)  # Create a hash table of size 5
+    hash_table.insert(1, 10)
+    hash_table.insert(2, 100)
+    hash_table.insert(1, 30)
 
+    print("Hash table content:")
+    hash_table.display()  # Display the table
 
-    # HashTable object creation
-    hash_table = HashTable()
+    print("\nSearch for (2, 100):", hash_table.search(2, 100))  # Should return True
+    print("Search for (1, 40):", hash_table.search(1, 40))  # Should return False
 
-    # Insert data
-    hash_table.insert(1, "Bangladesh")
-    hash_table.insert(2, "India")
-    hash_table.insert(3, "Japan")
-    hash_table.insert(1, "Canada")
-    hash_table.insert(4, "Iceland")
-    hash_table.insert(3, "London")
-
-
-    # hash_Table
-
-    print("full hash_table : ",hash_table.hash_table)
-
-    print()
-
-    # Display hash table
-    hash_table.display()
-
-
-
-    # Check value presence
-    print("\nSearching for key 1:", hash_table.search(1))
-    print("Searching for key 3:", hash_table.search(3))
-
-    # Get all values associated with a key
-    print("\nValues for key 1:", hash_table.get(1))
-    print("Values for key 3:", hash_table.get(3))
-
-    print(hash_table.get(0))
+    print(hash_table.search(1,30))
