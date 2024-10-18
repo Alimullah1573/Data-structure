@@ -25,6 +25,13 @@ class HashTable:
 
         return None
 
+    def display(self):
+        for i, item in enumerate(self.table):
+            if item is not None:
+                print(f"Index {i}: Key = {item[0]}, Value = {item[1]}")
+            else:
+                print(f"Index {i}: Empty")
+
 
 # Example usage
 hash_table = HashTable(10)
