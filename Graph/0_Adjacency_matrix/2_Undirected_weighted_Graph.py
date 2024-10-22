@@ -6,7 +6,7 @@ class Graph:
         self.adj_matrix = [[0 for _ in range(vertices)] for _ in range(vertices)]
 
     def add_edge(self, u, v,w):
-        # Add an edge (u, v) to the graph
+        # Add an edge (u, v, w) to the graph
         self.adj_matrix[u][v] = w
         self.adj_matrix[v][u] = w
   #  the graph is uddirected
