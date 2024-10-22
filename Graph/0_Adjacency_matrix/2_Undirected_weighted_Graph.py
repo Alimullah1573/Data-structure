@@ -9,7 +9,7 @@ class Graph:
         # Add an edge (u, v) to the graph
         self.adj_matrix[u][v] = w
         self.adj_matrix[v][u] = w
-  #  the graph is directed
+  #  the graph is uddirected
 
     def display(self):
         # Print the adjacency matrix
