@@ -5,7 +5,7 @@ class Graph:
         self.adj_list = [[] for _ in range(num_of_nodes)]  # Adjacency list initialized with empty lists
 
     # Add an edge to the graph
-    def add_edge(self, node, neighbor):                     # create udirected graph adjacency list
+    def add_edge(self, node, neighbor):                 
         self.adj_list[node].append(neighbor)
         self.adj_list[neighbor].append(node)
 
