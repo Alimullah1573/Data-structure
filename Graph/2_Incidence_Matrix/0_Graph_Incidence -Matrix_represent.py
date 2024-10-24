@@ -30,3 +30,33 @@ if __name__ == '__main__':
 
     # Display the incidence matrix
     g.display()
+
+
+
+# ********************************************************************
+
+class Vertex:
+    def __init__(self,vertices):
+        self.vertices = vertices
+
+        self.inc_list = [[0 for  i in range(vertices)] for _ in range(vertices)]
+
+
+    def add_icn_list(self,e,v):
+        self.inc_list[e][v] = 1
+        self.inc_list[v][e] = -1
+
+
+    def display(self):
+        for row in self.inc_list:
+            print(row)
+if __name__ == '__main__':
+    g = Vertex(4)
+    g.add_icn_list(0,1)
+    g.add_icn_list(0,2)
+    g.add_icn_list(1,3)
+    g.add_icn_list(2,3)
+
+
+    g.display()
+
